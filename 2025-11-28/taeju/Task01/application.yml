@@ -1,0 +1,9 @@
+
+#db 경로 및 이름과 비밀번호
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/mydb
+    name: dev
+    password: dev1234
+    driver-class-name: org.mariadb.jdbc.Driver
+
