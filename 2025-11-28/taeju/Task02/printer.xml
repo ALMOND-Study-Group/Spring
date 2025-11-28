@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 빈정의  -->
+    <bean id="ConsolePrinter" class="org.mycompany.test.DI.ConsolePrinter"/>
+    <bean id="FilePrinter" class="org.mycompany.test.DI.FilePrinter"/>
+
+    <!-- 의존성 주입 -->
+    <bean id="OutPrinter" class="org.mycompany.test.DI.OutPrinter">
+        <constructor-arg ref="ConsolePrinter"/> <!-- 여기서 DI 발생! -->
+    </bean>
+
+</beans>
+
+<!-- 완전 불편함. 공백에 민감함. 그리고 컴파일에러에서 어디가 에러나는지 모르겠음.
+인텔리가 찾아 주지않아서 힘듬.-->
