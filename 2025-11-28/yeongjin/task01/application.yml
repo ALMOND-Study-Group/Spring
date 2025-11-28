@@ -1,0 +1,22 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: boot-daily-mission
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring
+    username: root
+    password: root1234
+
+logging:
+  level:
+    root: INFO
+
+app:
+  test1:
+    name: "YMAL 테스트"
+    message: "Hello from YAML!"
+  test2:
+    name: "YMAL 테스트2"
+    message: "Hello from YAML!2"
