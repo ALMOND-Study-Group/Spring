@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- NameService 빈 정의 -->
+    <bean id="nameService" class="com.example.bootdailymission.springBasic.task02.NameService">
+        <property name="name" value="XML로 주입된 메시지입니다" />
+    </bean>
+
+    <!-- NameClient 빈 정의 + 의존성 주입 -->
+    <bean id="nameClient" class="com.example.bootdailymission.springBasic.task02.NameClient">
+        <property name="nameService" ref="nameService" />
+    </bean>
+
+</beans>
