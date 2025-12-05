@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: taeju
+
+  # 1. Datasource 설정 (MariaDB)
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/notice_board} # 환경변수 없으면 기본값 사용
+    username: ${DB_USERNAME:dev}
+    password: ${DB_PASSWORD:dev1234}
+    hikari:
+      maximum-pool-size: 10 #커넥션 풀 10개
+      connection-timeout: 30000 #커낵션 대기 기달리는 시간(타임락)
+  # 2. JPA 설정
+  jpa:
+    open-in-view: false # 백엔드 성능 최적화 (OSIV 끄기)
+    hibernate:
+      # 핵심 변경: update -> create-drop
+      # 시작 시: 기존 테이블 삭제 -> 새 테이블 생성
+      # 종료 시: 테이블 삭제 (데이터 증발함)
+      ddl-auto: ${JPA_DDL_AUTO:update} # prod에서는 validate 또는 none 권장
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+# 3. Thymeleaf (개발 시 캐시 끄기)
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+# 4. 로깅 설정 (디버깅용)
+logging:
+  level:
+    root: INFO
+    com.example.notice_board: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE # 바인딩 파라미터 확인
